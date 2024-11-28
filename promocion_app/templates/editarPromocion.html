@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"> <!-- Fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <center><h2>Editar Cita</h2></center>
+
+
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarPromocion/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="numidpromocion" name="numidpromocion" class="form-control" value="{{mispromocion.id_promocion}}" minlength="1" maxlength="6" readonly required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtdescripcion" name="txtdescripcion" class="form-control" value="{{mispromocion.descripcion}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtfechainicio" name="txtfechainicio" class="form-control" value="{{mispromocion.fecha_inicio}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtfechafin" name="txtfechafin" class="form-control" value="{{mispromocion.fecha_fin}}" maxlength="10" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numdescuento" name="numdescuento" class="form-control" value="{{mispromocion.descuento}}" minlength="1" maxlength="50" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtproductosaplicados" name="txtproductosaplicados" class="form-control" value="{{mispromocion.productos_aplicados}}" minlength="1" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtcondiciones" name="txtcondiciones" class="form-control" value="{{mispromocion.condiciones}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-dark">Cambiar Cita</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div> 
+</div> 
+
+{% endblock %}

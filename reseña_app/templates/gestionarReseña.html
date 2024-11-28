@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+{% load static %}
+<div class="row"> <!--La fila-->
+    
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna Izquierda-->
+        <center><h1>Registar Paciente</h1></center>
+
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="registrarReseña/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group py-2">
+                        <input type="text" id="numidreseña" name="numidreseña" class="form-control" placeholder="id del paciente" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numidproducto" name="numidproducto" class="form-control" placeholder= "Nombre del paciente" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numidcliente" name="numidcliente" class="form-control" placeholder="Apellido del paciente" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numcalificacion" name="numcalificacion" class="form-control" placeholder="Fecha de nacimiento" maxlength="10" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtcomentario" name="txtcomentario" class="form-control" placeholder="telefono" maxlength="50" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtfechareseña" name="txtfechareseña" class="form-control" placeholder="direccion" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtestado" name="txtestado" class="form-control" placeholder="Fecha de registro" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <center><button type="submit" class="btn btn-dark">Guardar Paciente</button></center>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- La tarjeta -->
+
+    </div> <!-- Columna Izquierda-->
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+    <center><h1>Listado de Paciente</h1></center>
+
+        <!-- La tabla -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">  </th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"> </th>
+                    <th scope="col"></th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in misreseña %}
+                    <tr>
+                        <td> {{m.id_reseña}} </td>
+                        <td> {{m.id_producto}} </td>
+                        <td> {{m.id_cliente}} </td>
+                        <td> {{m.calificacion}} </td>
+                        <td> {{m.comentario}} </td>
+                        <td> {{m.fecha_reseña}} </td>
+                        <td> {{m.estado}} </td>
+                        <td><a href="seleccionarReseña/{{m.id_reseña}}" class="btn btn-secondary">Editar</a></td> <!-- Falta -->
+                        <td><a href="borrarReseña/{{m.id_reseña}}" class="btn btn-dark">Borrar</a></td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <!-- La tabla -->
+    </div> <!-- Columna derecha -->
+
+</div> <!--La fila-->
+{% endblock %}

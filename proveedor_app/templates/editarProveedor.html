@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <center><h2>Editar Medico</h2></center>
+        
+
+        <div class="card"> 
+            <div class="card-body">
+                <form action="/editarProveedor/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group py-2">
+                        <input type="text" id="numidproveedor" name="numidproveedor" class="form-control" value="{{misproveedor.id_proveedor}}" minlength="1" maxlength="6" readonly required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtnombreempresa" name="txtnombreempresa" class="form-control" value="{{misproveedor.nombre_empresa}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtcontacto" name="txtcontacto" class="form-control" value="{{misproveedor.contacto}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numtelefono" name="numtelefono" class="form-control" value="{{misproveedor.telefono}}" maxlength="10" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtcorreoelectronico" name="txtcorreoelectronico" class="form-control" value="{{misproveedor.correo_electronico}}" minlength="1" maxlength="50" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" value="{{misproveedor.direccion}}" minlength="1" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtproductos" name="txtproductos" class="form-control" value="{{misproveedor.productos}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <center><button type="submit" class="btn btn-dark">Guardar Medico</button></center>
+                    </div>
+                </form>
+            </div>
+        </div> 
+
+
+    </div> 
+</div> 
+
+{% endblock %}

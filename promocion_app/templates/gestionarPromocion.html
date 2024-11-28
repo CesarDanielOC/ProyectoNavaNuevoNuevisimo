@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+{% load static %}
+    
+<div class="row">
+    
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <center><h1>Agendar Citas</h1></center>
+        <div class="card">
+            <div class="card-body">
+                <form action="registrarPromocion/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="numidpromocion" name="numidpromocion" class="form-control" placeholder="id promocion" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtdescripcion" name="txtdescripcion" class="form-control" placeholder= "descripcion " maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtfechainicio" name="txtfechainicio" class="form-control" placeholder="fecha inicio" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtfechafin" name="txtfechafin" class="form-control" placeholder=" fecha fin" maxlength="10" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numdescuento" name="numdescuento" class="form-control" placeholder=" descuento" maxlength="50" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numproductosaplicados" name="numproductosaplicados" class="form-control" placeholder="productos aplicados" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="txtcondiciones" name="txtcondiciones" class="form-control" placeholder="condiciones" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <center><button type="submit" class="btn btn-dark">Agendar cita</button></center>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div> 
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+        <center><h1>Citas agendadas</h1></center>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in mispromocion %}
+                    <tr>
+                        <td> {{m.id_promocion}} </td>
+                        <td> {{m.descripcion}} </td>
+                        <td> {{m.fecha_inicio}} </td>
+                        <td> {{m.fecha_fin}} </td>
+                        <td> {{m.descuento}} </td>
+                        <td> {{m.productos_aplicados}} </td>
+                        <td> {{m.condiciones}} </td>
+                        <td><a href="seleccionarPromocion/{{m.id_promocion}}" class="btn btn-secondary">Editar</a></td> <!-- Falta -->
+                        <td><a href="borrarPromocion/{{m.id_promocion}}" class="btn btn-dark">Borrar</a></td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+
+</div>
+{% endblock %}
